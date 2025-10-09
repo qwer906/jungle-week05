@@ -39,6 +39,7 @@ int removeNode(LinkedList *ll, int index);
 int main()
 {
 	int c, i;
+	c=1;
 	LinkedList ll;
 	LinkedList resultFrontList, resultBackList;
 
@@ -103,6 +104,70 @@ int main()
 void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList)
 {
 	/* add your code here */
+	// my code
+	/* if (ll == NULL) 
+		return;
+	ListNode *cur;
+	cur = ll->head;
+	if (cur == NULL) {
+		return;
+	}
+	int size = ll->size;
+	// if size is even
+	if (size % 2 ==0) {
+		for(int i =0; i < (size/2); i++) {
+			insertNode(resultFrontList, i, cur->item);
+			cur = cur->next;
+		}
+		for(int i =0; i < (size/2); i++) {
+			insertNode(resultBackList, i, cur->item);
+			cur = cur->next;
+		}
+		return;
+	}
+	// if size is odd
+	else {
+		for(int i =0; i <= (size/2); i++) {
+			insertNode(resultFrontList, i, cur->item);
+			cur = cur->next;
+		}
+		for(int i =0; i < (size/2); i++) {
+			insertNode(resultBackList, i, cur->item);
+			cur = cur->next;
+		}
+		return;
+	} */
+
+	// use two pointer
+	if (resultFrontList) {
+		resultFrontList->head = NULL;
+		resultFrontList->size = 0;
+	}
+	if (resultBackList) {
+		resultBackList->head = NULL;
+		resultBackList->size = 0;
+	}
+
+	if ( ll == NULL || ll->head == NULL) {
+		return ;
+	}
+
+	ListNode *slow = ll->head;
+	ListNode *fast = ll->head->next;
+	while (fast != NULL && fast->next != NULL) {
+		slow=slow->next;
+		fast=fast->next->next;
+	}
+	ListNode *fronthead = ll->head;
+	ListNode *backhead = slow->next;
+	slow->next = NULL;
+
+	if (resultFrontList) {
+		resultFrontList->head = fronthead;
+	}
+	if (resultBackList) {
+		resultBackList->head = backhead;
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
