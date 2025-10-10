@@ -105,6 +105,58 @@ int main()
 int balanced(char *expression)
 {
 /* add your code here */
+	if (expression == NULL) {
+		return 0;
+	}
+	Stack s;
+	s.ll.head = NULL;
+	s.ll.size = 0;
+	/*
+	int len = 0;
+	while (expression[len] != '\0'){
+		len++;
+	}
+	for(int i =0; i<len; i++) {
+		if (expression[i]=='(' || expression[i] == '[' || expression[i] == '{'){
+			push(&s, expression[i]);
+			continue;
+		}
+		if ((char)(peek(&s)) == '(' && expression[i] == ')') {
+			pop(&s);
+		}
+		else if ((char)(peek(&s)) == '[' && expression[i] == ']') {
+			pop(&s);
+		}
+		else if ((char)(peek(&s)) == '{' && expression[i] == '}') {
+			pop(&s);
+		}
+	}
+	if (!isEmptyStack(&s)) {
+		return 1;
+	}
+	else {
+		return 0;
+	}
+	*/
+	for (const char *p = expression; *p; ++p) {
+		char ch = *p;
+		if (ch == '(' || ch == '[' || ch == '{') {
+			push(&s,ch);
+			continue;
+		}
+		if (isEmptyStack(&s)) {
+			removeAllItemsFromStack(&s);
+			return 1;
+		}
+		char top = (char)peek(&s);
+		if ((top == '(' && ch == ')') || (top == '[' && ch == ']') || (top == '{' && ch == '}')){
+			pop(&s);
+		}
+		
+		int res = isEmptyStack(&s) ? 0 : 1;
+		removeAllItemsFromStack(&s);
+		return res;
+	}
 }
 
 ////////////////////////////////////////////////////////////
