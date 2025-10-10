@@ -117,11 +117,39 @@ int main()
 void createQueueFromLinkedList(LinkedList *ll, Queue *q)
 {
 	/* add your code here */
+	if (ll == NULL || q == NULL) {
+		return;
+	}
+	// Linkedlist 메모리상에 있는 주소를 전달하기 위해서 (얕은 복사)
+	q->ll = *ll;
+	ll->head = NULL;
+	ll->size = 0;
+
+	/* queue에 새로운 리스트를 만들어서 넣어놓는것
+	q->ll.head = NULL;
+	q->ll.size = 0;
+	for (ListNode *cur = ll ->head; cur != NULL; cur = cur->next){
+		insertNode(&q->ll,q->ll.size, cur->item);
+	}
+	*/
 }
 
 void removeOddValues(Queue *q)
 {
 	/* add your code here */
+	if (q == NULL) {
+		return;
+	}
+	int size = q->ll.size;
+	for (int i =0; i<size; i++) {
+		int value = dequeue(q);
+		if (value % 2 == 1) {
+			continue;
+		}
+		else {
+			enqueue(q, value);
+		}
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////
