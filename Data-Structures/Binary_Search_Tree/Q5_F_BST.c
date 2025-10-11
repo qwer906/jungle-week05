@@ -91,7 +91,32 @@ int main()
 
 void postOrderIterativeS2(BSTNode *root)
 {
-	 /* add your code here */
+	/* add your code here */
+	if (root == NULL) {
+		return;
+	}
+	Stack s1;
+	s1.top = NULL;
+	Stack s2;
+	s2.top = NULL;
+
+	push(&s1, root);
+	while (!isEmpty(&s1)) {
+		BSTNode *node = pop(&s1);
+		push(&s2, node);
+		if (node -> left) {
+			push(&s1, node ->left);
+		}
+		if (node -> right) {
+			push(&s1, node->right);
+		}
+	}
+
+	while (!isEmpty(&s2)) {
+		BSTNode *node = pop(&s2);
+		printf("%d ", node -> item);
+	}
+	
 }
 
 /* Given a binary search tree and a key, this function
@@ -99,6 +124,49 @@ void postOrderIterativeS2(BSTNode *root)
 BSTNode* removeNodeFromTree(BSTNode *root, int value)
 {
 	/* add your code here */
+	if (root == NULL) {
+		return NULL;
+	}
+	// root가 value보다 큰 경우. 찾는 값이 더 작으니 왼쪽 서브트리로
+	// 왼쪽에서 한 경우의 root를 받아줘야 함
+	if (root -> item > value) {
+		root -> left = removeNodeFromTree(root->left, value);
+		return root;
+	}
+	// 크면 오른쪽 서브트리로
+	else if (root -> item < value) {
+		root -> right = removeNodeFromTree(root->right, value);
+		return root;
+	}
+
+	// root가 찾는 value인 경우
+	// 자식들이 null 인경우 root 반환하면서 null return 
+	if (root->left == NULL && root -> right == NULL) {
+		free(root);
+		return NULL;
+	}
+	// 둘 중 하나만 null인 경우 null이 아닌 걸 return하면서 root free
+	else if (root -> left  == NULL || root -> right == NULL) {
+		BSTNode *child = (root->left != NULL) ? root->left : root->right;
+		free(root);
+		return child;
+	}
+	else {
+		BSTNode *temp;
+		temp = root->left;
+		// 왼쪽 서브트리에서 최대값 찾기
+		while(1){
+			if (temp->right == NULL) {
+				break
+			}
+			temp = temp->right;
+		}
+
+		root->item = temp->item;
+		root->left = removeNodeFromTree(root->left, temp->item);
+		return root;
+	}
+
 }
 ///////////////////////////////////////////////////////////////////////////////
 
