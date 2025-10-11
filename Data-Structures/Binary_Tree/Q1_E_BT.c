@@ -116,7 +116,57 @@ int main()
 int identical(BTNode *tree1, BTNode *tree2)
 
 {
-   /* add your code here */
+    /* add your code here */
+    // recursion
+    if (tree1 == NULL && tree2 == NULL) {
+        return 1;
+    }
+    if (tree1 == NULL || tree2 == NULL) {
+        return 0;
+    }
+    int check_left = identical(tree1->left, tree2->left);
+    int check_right = identical(tree1->right, tree2->right);
+
+    if (check_left == 1 && check_right == 1 && tree1->item == tree2->item){
+        return 1;
+    }
+    else {
+        return 0;
+    }
+    /*
+    //use stack pop
+    Stack s1, s2;
+    s1.top = NULL;
+    s2.top = NULL;
+
+    push(&s1, tree1);
+    push(&s2, tree2);
+
+    while (s1.top != NULL && s2.top != NULL) {
+        BTNode *n1 = pop(&s1);
+        BTNode *n2 = pop(&s2);
+
+        if (n1 == NULL && n2 == NULL) {
+            continue;
+        }
+        if (n1 == NULL || n2 == NULL) {
+            return 0;
+        }
+        if (n1->item != n2 -> item) {
+            return 0;
+        }
+        push(&s1, n1->left);
+        push(&s1, n1->right);
+        push(&s2, n2->left);
+        push(&s2, n2->right);
+    }
+
+    if (s1.top != NULL || s2.top != NULL) {
+        return 0;
+    }
+
+    return 1;
+    */
 }
 
 /////////////////////////////////////////////////////////////////////////////////
