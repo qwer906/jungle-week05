@@ -1,6 +1,42 @@
 .DS_Store
 test
-# 🔽 Linked_List 폴더 내에서 .c, .pdf만 제외하고 전부 무시
+# ==========================
+# Linked_List
+# ==========================
 Data-Structures/Linked_List/*
 !Data-Structures/Linked_List/*.c
 !Data-Structures/Linked_List/*.pdf
+
+# ==========================
+# Binary_Search_Tree
+# ==========================
+Data-Structures/Binary_Search_Tree/*
+!Data-Structures/Binary_Search_Tree/*.c
+!Data-Structures/Binary_Search_Tree/*.pdf
+
+# ==========================
+# Binary_Tree
+# ==========================
+Data-Structures/Binary_Tree/*
+!Data-Structures/Binary_Tree/*.c
+!Data-Structures/Binary_Tree/*.pdf
+
+# ==========================
+# Stack_and_Queue
+# ==========================
+Data-Structures/Stack_and_Queue/*
+!Data-Structures/Stack_and_Queue/*.c
+!Data-Structures/Stack_and_Queue/*.pdf
+
+# ==========================
+# 일반 컴파일 산출물 / 임시파일
+# ==========================
+*.out
+*.exe
+*.o
+*.obj
+a.out
+
+# macOS / VSCode
+.DS_Store
+.vscode/
