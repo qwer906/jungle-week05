@@ -1,3 +1,6 @@
 .DS_Store
 test
-Linked_list/Q*_A_LL
+# 🔽 Linked_List 폴더 내에서 .c, .pdf만 제외하고 전부 무시
+Data-Structures/Linked_List/*
+!Data-Structures/Linked_List/*.c
+!Data-Structures/Linked_List/*.pdf
