@@ -101,15 +101,9 @@ int maxHeight(BTNode *node)
     if (node == NULL) {
         return -1;
     }
-    int left_h = maxHeight(node -> left);
-    int right_h = maxHeight(node -> right);
-
-    if (left_h > right_h) {
-        return 1+left_h;
-    }
-    else {
-        return 1+right_h;
-    }
+    BTNode *root = node;
+    int max_child_height = (maxHeight(root->left) > maxHeight(root->right)) ? maxHeight(root->left) : maxHeight(root->right);
+    return max_child_height + 1;
     /*
     Stack s;
     s.top = NULL;
